@@ -1,0 +1,86 @@
+[
+  {
+    "id": 1,
+    "slug": "nusantarajok",
+    "thumbnail_url": "/assets/projects/kopergrosir.webp",
+    "tech_stack": ["Laravel", "Blade", "Alpine.js", "Tailwind"],
+    "github_url": "https://github.com/Riyanzakaria/nusantarajok",
+    "live_url": "",
+    "span": "col-span-1 md:col-span-2",
+    "content": {
+      "en": {
+        "title": "Nusantara Jok (Auto-Stitch OS)",
+        "short_desc": "Comprehensive business management system with Kanban, smart calculator, and dynamic pricing engine.",
+        "full_desc": "Nusantara Jok is an end-to-end order management system featuring a Kanban board for work order tracking, automated database partitioning, and a robust CRUD-enabled pricelist management system."
+      },
+      "id": {
+        "title": "Nusantara Jok (Auto-Stitch OS)",
+        "short_desc": "Sistem manajemen bisnis komprehensif dengan Kanban, kalkulator pintar, dan mesin harga dinamis.",
+        "full_desc": "Nusantara Jok adalah sistem manajemen pesanan end-to-end yang menampilkan papan Kanban untuk pelacakan perintah kerja, partisi basis data otomatis, dan sistem manajemen daftar harga CRUD yang kuat."
+      }
+    }
+  },
+  {
+    "id": 2,
+    "slug": "amoresync",
+    "thumbnail_url": "/assets/projects/tivity.webp",
+    "tech_stack": ["TypeScript", "Next.js", "Tailwind"],
+    "github_url": "https://github.com/Riyanzakaria/amoresync",
+    "live_url": "https://amoresync.vercel.app",
+    "span": "col-span-1",
+    "content": {
+      "en": {
+        "title": "AmoreSync",
+        "short_desc": "Modern web application built with TypeScript and Next.js.",
+        "full_desc": "AmoreSync is a high-performance, modern web application showcasing seamless UI interactions and robust frontend architecture."
+      },
+      "id": {
+        "title": "AmoreSync",
+        "short_desc": "Aplikasi web modern yang dibangun dengan TypeScript dan Next.js.",
+        "full_desc": "AmoreSync adalah aplikasi web berkinerja tinggi dan modern yang menampilkan interaksi UI yang mulus dan arsitektur frontend yang kuat."
+      }
+    }
+  },
+  {
+    "id": 3,
+    "slug": "lexilink",
+    "thumbnail_url": "/assets/projects/attendance.webp",
+    "tech_stack": ["Kotlin", "Jetpack Compose", "Firebase"],
+    "github_url": "https://github.com/Riyanzakaria/UTS-Mobile-2",
+    "live_url": "",
+    "span": "col-span-1",
+    "content": {
+      "en": {
+        "title": "Lexilink (Mobile App)",
+        "short_desc": "Real-time Android competitive vocabulary game with low-latency synchronization.",
+        "full_desc": "Lexilink is a high-performance Android game using Kotlin and Jetpack Compose. It implements a sub-100ms real-time synchronization system via Firebase and a hybrid validation loop."
+      },
+      "id": {
+        "title": "Lexilink (Aplikasi Mobile)",
+        "short_desc": "Game kosakata kompetitif Android real-time dengan sinkronisasi latensi rendah.",
+        "full_desc": "Lexilink adalah game Android berkinerja tinggi yang menggunakan Kotlin dan Jetpack Compose. Game ini menerapkan sistem sinkronisasi real-time sub-100ms melalui Firebase dan loop validasi hybrid."
+      }
+    }
+  },
+  {
+    "id": 4,
+    "slug": "harmonix",
+    "thumbnail_url": "/assets/projects/passkeeper.webp",
+    "tech_stack": ["PHP", "HTML", "MySQL"],
+    "github_url": "https://github.com/Riyanzakaria/harmonix",
+    "live_url": "",
+    "span": "col-span-1 md:col-span-2 lg:col-span-1",
+    "content": {
+      "en": {
+        "title": "Harmonix",
+        "short_desc": "Full-stack web application built using native PHP and MySQL.",
+        "full_desc": "Harmonix demonstrates fundamental full-stack web development principles with a custom PHP backend and integrated database management."
+      },
+      "id": {
+        "title": "Harmonix",
+        "short_desc": "Aplikasi web full-stack yang dibangun menggunakan PHP native dan MySQL.",
+        "full_desc": "Harmonix mendemonstrasikan prinsip-prinsip pengembangan web full-stack fundamental dengan backend PHP kustom dan manajemen basis data terintegrasi."
+      }
+    }
+  }
+]
