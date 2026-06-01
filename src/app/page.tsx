@@ -8,6 +8,7 @@ import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { WavePath } from "@/components/ui/wave-path";
 import { ContactForm } from "@/components/ContactForm";
 import { TechStackSection } from "@/components/TechStackSection";
+import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import projectsData from "@/data/projects.json";
 import { useAppStore } from "@/store/useAppStore";
 
@@ -163,6 +164,8 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        <ExperienceTimeline />
 
         <div className="max-w-7xl mx-auto px-6 relative py-8">
            <WavePath />
