@@ -9,11 +9,15 @@ import { WavePath } from "@/components/ui/wave-path";
 import { ContactForm } from "@/components/ContactForm";
 import { TechStackSection } from "@/components/TechStackSection";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { SocialDock } from "@/components/SocialDock";
 import projectsData from "@/data/projects.json";
 import { useAppStore } from "@/store/useAppStore";
+import { translations } from "@/lib/translations";
 
 export default function Home() {
   const { setSelectedProject, locale } = useAppStore();
+  const t = translations[locale as keyof typeof translations] || translations.en;
+
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-accent/30 selection:text-accent">
 
@@ -30,7 +34,7 @@ export default function Home() {
           <div className="relative z-10 flex-1 space-y-6 max-w-2xl text-center lg:text-left mt-10 lg:mt-0">
             <p className=" text-slate-500 dark:text-slate-400 font-semibold tracking-wider flex items-center justify-center lg:justify-start gap-3 text-sm">
               <span className="w-8 h-[2px] bg-slate-400 dark:bg-slate-600 hidden lg:block"></span>
-              HELLO, I AM
+              {t.hero.greeting}
             </p>
 
             <h1 className="text-5xl sm:text-6xl md:text-7xl font-black tracking-tight leading-[1.1]">
@@ -41,28 +45,26 @@ export default function Home() {
             </h1>
 
             <h2 className="text-xl md:text-2xl font-bold text-slate-700 dark:text-slate-300 mt-2">
-              Software & Frontend Engineer
+              {t.hero.role}
             </h2>
 
-            <div className="flex items-center justify-center lg:justify-start gap-5 text-slate-500 dark:text-slate-400 my-6">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors transform hover:scale-110"><Globe className="w-6 h-6" /></a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors transform hover:scale-110"><Briefcase className="w-6 h-6" /></a>
-              <a href="mailto:contact@example.com" className="hover:text-accent transition-colors transform hover:scale-110"><Mail className="w-6 h-6" /></a>
+            <div className="flex items-center justify-center lg:justify-start gap-5 my-6">
+              <SocialDock />
             </div>
 
             <p className="text-base md:text-lg text-slate-600 dark:text-slate-400 max-w-xl mx-auto lg:mx-0 font-light leading-relaxed">
-              Membangun aplikasi fungsional, interaktif, dan berpusat pada pengguna. Spesialis dalam arsitektur perangkat lunak yang skalabel dan pengembangan mobile/web modern.
+              {t.hero.description}
             </p>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-4">
               <a href="#projects" className="px-6 py-3 bg-accent hover:bg-indigo-700 text-white rounded-full font-medium transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 flex items-center gap-2 shadow-[0_4px_14px_0_rgba(99,102,241,0.39)] group">
                 <span className="bg-white/20 p-1.5 rounded-full group-hover:bg-white/30 transition-colors"><Code2 className="w-4 h-4" /></span>
-                View Projects
+                {t.hero.viewProjects}
               </a>
 
               <a href="#contact" className="px-6 py-3 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 hover:border-accent hover:text-accent text-slate-700 dark:text-slate-300 rounded-full font-medium transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 flex items-center gap-2 shadow-sm">
                 <Mail className="w-5 h-5" />
-                Contact Me
+                {t.hero.contactMe}
               </a>
             </div>
           </div>
@@ -142,24 +144,20 @@ export default function Home() {
 
           <div className="w-full lg:w-7/12 space-y-8 text-center lg:text-left">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-slate-900 dark:text-white leading-[1.3] tracking-tight">
-              I AM <span className="inline-block bg-accent text-white px-5 py-2 rounded-xl transform -rotate-1 shadow-sm mt-1 sm:mt-0">RIYAN ZAKARIA</span>,
+              {t.about.title} <span className="inline-block bg-accent text-white px-5 py-2 rounded-xl transform -rotate-1 shadow-sm mt-1 sm:mt-0">RIYAN ZAKARIA</span>
               <br className="hidden sm:block" />
-              <span className="inline-block bg-emerald-500 text-white px-5 py-2 rounded-xl transform rotate-1 shadow-sm mt-3">FULLSTACK DEVELOPER</span>
+              <span className="inline-block bg-emerald-500 text-white px-5 py-2 rounded-xl transform rotate-1 shadow-sm mt-3">{t.about.subtitle}</span>
             </h2>
 
             <div className="border-l-4 border-accent pl-6 space-y-5 text-slate-600 dark:text-slate-400 text-base md:text-lg text-left max-w-2xl mx-auto lg:mx-0">
-              <p>
-                Sebagai mahasiswa program D4 Teknologi Rekayasa Perangkat Lunak di Politeknik Negeri Madiun, saya memiliki ketertarikan yang mendalam untuk menerjemahkan kebutuhan sistem yang kompleks menjadi aplikasi yang efisien dan interaktif.
-              </p>
-              <p>
-                Dari merancang arsitektur backend data engineering menggunakan Laravel dan Python, hingga mendigitalkan alur kerja melalui antarmuka mobile dengan Kotlin dan Jetpack Compose, saya terbiasa membangun solusi komprehensif dari awal yang memberikan dampak nyata.
-              </p>
+              <p>{t.about.para1}</p>
+              <p>{t.about.para2}</p>
             </div>
 
             <div className="pt-4 flex justify-center lg:justify-start">
               <a href="/resume.pdf" download className="px-8 py-4 bg-slate-900 dark:bg-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-200 text-white rounded-xl font-bold font-sans tracking-wide transition-all duration-300 flex items-center gap-3 shadow-lg shadow-slate-900/20 focus-visible:ring-2 focus-visible:ring-accent hover:-translate-y-1">
                 <Download className="w-5 h-5" />
-                DOWNLOAD CV
+                {t.about.downloadCv}
               </a>
             </div>
           </div>
@@ -175,10 +173,10 @@ export default function Home() {
         <section id="projects" className="pt-16 pb-24 px-6 max-w-7xl mx-auto">
           <div className="mb-16 text-center md:text-left">
             <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white">
-              Featured <span className="text-accent">Works.</span>
+              {t.projects.title} <span className="text-accent">{t.projects.subtitle}</span>
             </h2>
             <p className="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto md:mx-0 font-mono text-sm">
-              A collection of projects I've built, ranging from user interfaces to complex backend systems.
+              {t.projects.desc}
             </p>
           </div>
 
@@ -198,7 +196,7 @@ export default function Home() {
                   name={currentContent.title}
                   description={currentContent.short_desc}
                   href="#"
-                  cta="View Details"
+                  cta={t.projects.viewDetails}
                   className={`${classNames[idx % classNames.length]} cursor-pointer group`}
                   onClick={(e) => {
                     e.preventDefault();
@@ -232,9 +230,9 @@ export default function Home() {
           <div className="max-w-4xl mx-auto">
             <div className="text-center mb-16">
               <h2 className="text-4xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white">
-                Let's <span className="text-accent">Connect.</span>
+                {t.contact.title} <span className="text-accent">{t.contact.subtitle}</span>
               </h2>
-              <p className="text-slate-600 dark:text-slate-400">Punya ide proyek atau peluang karir? Jangan ragu untuk menyapa.</p>
+              <p className="text-slate-600 dark:text-slate-400">{t.contact.desc}</p>
             </div>
 
             <ContactForm />
@@ -244,7 +242,7 @@ export default function Home() {
       </main>
 
       <footer className="py-8 pb-24 md:pb-8 text-center text-slate-500 font-mono text-sm border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-950">
-        <p>© {new Date().getFullYear()} Riyan Zakaria Zulkarnain. Built with Next.js, Framer Motion & Tailwind.</p>
+        <p>© {new Date().getFullYear()} Riyan Zakaria Zulkarnain. {t.footer}</p>
       </footer>
     </div>
   );

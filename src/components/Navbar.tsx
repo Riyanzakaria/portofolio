@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Mail, Home, User, FolderGit2 } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
+import { useAppStore } from "@/store/useAppStore";
+import { translations } from "@/lib/translations";
 
 const navLinks = [
   { name: 'Home', href: '#home', icon: Home },
@@ -13,6 +15,8 @@ const navLinks = [
 
 export function Navbar() {
   const [activeSection, setActiveSection] = useState('#home');
+  const { locale } = useAppStore();
+  const t = translations[locale as keyof typeof translations] || translations.en;
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,7 +69,7 @@ export function Navbar() {
                   }`}
                 >
                   <Icon className={`w-4 h-4 ${isActive ? "" : "opacity-70"}`} />
-                  {item.name}
+                  {t.nav[item.name.toLowerCase() as keyof typeof t.nav]}
                 </a>
               );
             })}
@@ -79,7 +83,7 @@ export function Navbar() {
               className="text-slate-600 dark:text-slate-400 hover:text-accent dark:hover:text-accent transition-colors flex items-center gap-2 font-medium"
             >
               <Mail className="w-4 h-4" />
-              Contact
+              {t.nav.contact}
             </a>
             <LanguageToggle />
           </div>

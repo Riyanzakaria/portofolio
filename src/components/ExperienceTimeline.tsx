@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap, Calendar } from "lucide-react";
+import { useAppStore } from "@/store/useAppStore";
+import { translations } from "@/lib/translations";
 
 const EXPERIENCES = [
   {
@@ -34,14 +36,17 @@ const EXPERIENCES = [
 ];
 
 export function ExperienceTimeline() {
+  const { locale } = useAppStore();
+  const t = translations[locale as keyof typeof translations] || translations.en;
+
   return (
     <section id="experience" className="py-24 px-6 max-w-4xl mx-auto">
       <div className="mb-16 text-center">
         <h2 className="text-3xl md:text-5xl font-black mb-4 text-slate-900 dark:text-white">
-          Journey & <span className="text-accent">Experience.</span>
+          {t.experience.title} <span className="text-accent">{t.experience.subtitle}</span>
         </h2>
         <p className="text-slate-600 dark:text-slate-400 font-mono text-sm max-w-xl mx-auto">
-          Perjalanan karir dan pendidikan saya sejauh ini.
+          {t.experience.desc}
         </p>
       </div>
 
@@ -49,9 +54,9 @@ export function ExperienceTimeline() {
         {/* Center Line for Desktop */}
         <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px bg-slate-200 dark:bg-slate-800 -translate-x-1/2" />
 
-        {EXPERIENCES.map((exp, index) => (
+        {t.experienceTimeline.map((exp, index) => (
           <motion.div
-            key={exp.id}
+            key={index}
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
