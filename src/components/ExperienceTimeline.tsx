@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Briefcase, GraduationCap, Calendar } from "lucide-react";
 import { useAppStore } from "@/store/useAppStore";
 import { translations } from "@/lib/translations";

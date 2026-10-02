@@ -1,7 +1,7 @@
 "use client";
 
-import { ReactLenis } from "@studio-freight/react-lenis";
-import { LazyMotion, domAnimation } from "framer-motion";
+import { ReactLenis } from "lenis/react";
+import { LazyMotion, domAnimation } from "motion/react";
 
 export function LenisProvider({ children }: { children: React.ReactNode }) {
   return (

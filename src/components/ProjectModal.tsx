@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { m, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { m, AnimatePresence, useScroll, useTransform } from "motion/react";
 import { X, ExternalLink, Code2, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useAppStore } from "@/store/useAppStore";
