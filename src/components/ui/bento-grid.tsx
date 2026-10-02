@@ -53,13 +53,16 @@ const BentoCard = ({
     )}
     {...props}
   >
-    <div>{background}</div>
-    <div className="p-4">
-      <div className="pointer-events-none z-10 flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
-        <h3 className="text-xl font-bold text-white drop-shadow-md">
+    <div className="absolute inset-0 z-0">{background}</div>
+    {/* Glassmorphism Noise Overlay */}
+    <div className="absolute inset-0 z-[5] pointer-events-none opacity-20 dark:opacity-10 mix-blend-overlay bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+    
+    <div className="p-4 relative z-20">
+      <div className="pointer-events-none flex transform-gpu flex-col gap-1 transition-all duration-300 lg:group-hover:-translate-y-10">
+        <h3 className="text-xl font-black text-white drop-shadow-xl">
           {name}
         </h3>
-        <p className="max-w-lg text-slate-200 drop-shadow-md">{description}</p>
+        <p className="max-w-lg text-slate-200 drop-shadow-md text-sm font-medium">{description}</p>
       </div>
 
       <div

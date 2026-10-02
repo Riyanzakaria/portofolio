@@ -6,6 +6,8 @@ import { z } from "zod";
 import { ArrowRight, CheckCircle2, Loader2, AlertCircle } from "lucide-react";
 import { useState } from "react";
 import { sendEmailAction } from "@/actions/sendEmail";
+import { useAppStore } from "@/store/useAppStore";
+import { translations } from "@/lib/translations";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Nama minimal 2 karakter"),
@@ -18,6 +20,8 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 export function ContactForm() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [responseMessage, setResponseMessage] = useState("");
+  const { locale } = useAppStore();
+  const t = translations[locale as keyof typeof translations] || translations.en;
 
   const {
     register,
@@ -87,7 +91,7 @@ export function ContactForm() {
             disabled={status === "loading"}
           />
           <label htmlFor="name" className="absolute left-0 -top-3.5 text-sm text-slate-500 dark:text-slate-400 font-mono transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-accent">
-            // Nama Anda
+            // {t.contact.nameLabel}
           </label>
           {errors.name && <p className="text-red-500 text-xs mt-1 absolute">{errors.name.message}</p>}
         </div>
@@ -104,7 +108,7 @@ export function ContactForm() {
             disabled={status === "loading"}
           />
           <label htmlFor="email" className="absolute left-0 -top-3.5 text-sm text-slate-500 dark:text-slate-400 font-mono transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-sm peer-focus:text-accent">
-            // Alamat Email
+            // {t.contact.emailLabel}
           </label>
           {errors.email && <p className="text-red-500 text-xs mt-1 absolute">{errors.email.message}</p>}
         </div>
@@ -122,7 +126,7 @@ export function ContactForm() {
           disabled={status === "loading"}
         ></textarea>
         <label htmlFor="message" className="absolute left-0 top-0 text-sm text-slate-500 dark:text-slate-400 font-mono transition-all peer-placeholder-shown:text-base peer-placeholder-shown:top-6 peer-focus:top-0 peer-focus:text-sm peer-focus:text-accent">
-          // Pesan Anda
+          // {t.contact.messageLabel}
         </label>
         {errors.message && <p className="text-red-500 text-xs mt-1 absolute">{errors.message.message}</p>}
       </div>
@@ -135,12 +139,12 @@ export function ContactForm() {
         >
           {status === "loading" ? (
             <>
-              MENGIRIM...
+              {t.contact.sending}
               <Loader2 className="w-5 h-5 animate-spin" />
             </>
           ) : (
             <>
-              KIRIM PESAN
+              {t.contact.sendButton}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </>
           )}

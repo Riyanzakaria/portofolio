@@ -6,6 +6,7 @@ import { LenisProvider } from "@/components/LenisProvider";
 import { CustomCursor } from "@/components/CustomCursor";
 import { ProjectModal } from "@/components/ProjectModal";
 import { WelcomeScreen } from "@/components/WelcomeScreen";
+import { CommandPalette } from "@/components/CommandPalette";
 import { cn } from "@/lib/utils";
 
 const plusJakartaSans = Plus_Jakarta_Sans({
@@ -43,6 +44,7 @@ export default function RootLayout({
         >
           <LenisProvider>
             <WelcomeScreen />
+            <CommandPalette />
             <CustomCursor />
             <ProjectModal />
             {children}

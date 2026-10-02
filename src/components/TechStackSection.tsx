@@ -2,6 +2,8 @@
 
 import { ScrollVelocityContainer, ScrollVelocityRow } from "@/components/ui/scroll-based-velocity";
 import Image from "next/image";
+import { useAppStore } from "@/store/useAppStore";
+import { translations } from "@/lib/translations";
 
 const TECH_STACK_ROW_1 = [
   { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" },
@@ -44,11 +46,14 @@ const TechCard = ({ name, icon }: { name: string; icon: string }) => {
 };
 
 export function TechStackSection() {
+  const { locale } = useAppStore();
+  const t = translations[locale as keyof typeof translations] || translations.en;
+
   return (
     <section className="w-full pt-24 pb-12 bg-slate-50 dark:bg-slate-950 overflow-hidden relative">
       <div className="max-w-7xl mx-auto px-6 mb-16 relative z-10">
         <h2 className="text-3xl md:text-5xl font-black text-slate-900 dark:text-white">
-          Technology <span className="text-accent">Stack</span>
+          {t.tech.title} <span className="text-accent">{t.tech.subtitle}</span>
         </h2>
       </div>
 
