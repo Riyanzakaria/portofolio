@@ -19,9 +19,49 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://portofolio-lime-three-51.vercel.app";
+
+const SITE_TITLE = "Riyan Zakaria Zulkarnain - Software Engineer";
+const SITE_DESCRIPTION =
+  "Interactive portfolio of Riyan Zakaria Zulkarnain, a software engineering student and developer building web and mobile products with Next.js, Laravel, and Kotlin.";
+
 export const metadata: Metadata = {
-  title: "Riyan Zakaria - Portofolio",
-  description: "Portofolio Software Engineer interaktif",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_TITLE,
+    template: "%s | Riyan Zakaria Zulkarnain",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: [
+    "Riyan Zakaria Zulkarnain",
+    "Software Engineer",
+    "Portfolio",
+    "Next.js",
+    "Laravel",
+    "Kotlin",
+    "Web Developer",
+    "Politeknik Negeri Madiun",
+  ],
+  authors: [{ name: "Riyan Zakaria Zulkarnain" }],
+  creator: "Riyan Zakaria Zulkarnain",
+  openGraph: {
+    type: "website",
+    locale: "id_ID",
+    url: SITE_URL,
+    siteName: "Riyan Zakaria Zulkarnain - Portofolio",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
