@@ -13,6 +13,8 @@ const contactSchema = z.object({
   name: z.string().min(2, "Nama minimal 2 karakter"),
   email: z.string().email("Format email tidak valid"),
   message: z.string().min(10, "Pesan minimal 10 karakter"),
+  // Honeypot: hidden from humans, filled by bots.
+  company: z.string().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -34,14 +36,12 @@ export function ContactForm() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setStatus("loading");
-    
-    // Simulate slight delay for better UX if local mockup
-    await new Promise(res => setTimeout(res, 800));
 
     const formData = new FormData();
     formData.append("name", data.name);
     formData.append("email", data.email);
     formData.append("message", data.message);
+    formData.append("company", data.company ?? "");
 
     const result = await sendEmailAction(null, formData);
 
@@ -129,6 +129,16 @@ export function ContactForm() {
           // {t.contact.messageLabel}
         </label>
         {errors.message && <p className="text-red-500 text-xs mt-1 absolute">{errors.message.message}</p>}
+      </div>
+
+      {/* Honeypot: hidden from humans; bots that fill it are dropped silently */}
+      <div className="hidden" aria-hidden="true">
+        <input
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("company")}
+        />
       </div>
 
       <div className="flex justify-end pt-4">

@@ -3,45 +3,72 @@
 import { Resend } from "resend";
 import { z } from "zod";
 
-const resend = new Resend(process.env.RESEND_API_KEY || "re_placeholder");
-
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
   email: z.string().email("Invalid email address"),
   message: z.string().min(10, "Message must be at least 10 characters"),
+  // Honeypot: a hidden field humans never see or fill. Bots do.
+  company: z.string().optional(),
 });
 
-export async function sendEmailAction(prevState: any, formData: FormData) {
-  try {
-    const data = {
-      name: formData.get("name"),
-      email: formData.get("email"),
-      message: formData.get("message"),
+export interface ContactFormState {
+  success: boolean;
+  message: string;
+  errors?: Record<string, string[] | undefined>;
+}
+
+const TO_EMAIL = process.env.CONTACT_TO_EMAIL ?? "zriyan191@gmail.com";
+const FROM_EMAIL =
+  process.env.RESEND_FROM_EMAIL ?? "Portofolio Contact <onboarding@resend.dev>";
+
+export async function sendEmailAction(
+  _prevState: ContactFormState | null,
+  formData: FormData,
+): Promise<ContactFormState> {
+  const validatedData = contactSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    message: formData.get("message"),
+    company: formData.get("company") ?? undefined,
+  });
+
+  if (!validatedData.success) {
+    return {
+      success: false,
+      message: "Invalid form data. Please check your inputs.",
+      errors: validatedData.error.flatten().fieldErrors,
     };
+  }
 
-    const validatedData = contactSchema.safeParse(data);
+  const { name, email, message, company } = validatedData.data;
 
-    if (!validatedData.success) {
-      return {
-        success: false,
-        message: "Invalid form data. Please check your inputs.",
-        errors: validatedData.error.flatten().fieldErrors,
-      };
-    }
+  // Honeypot tripped: pretend success, send nothing.
+  if (company) {
+    return {
+      success: true,
+      message: "Pesan Anda berhasil dikirim. Terima kasih!",
+    };
+  }
 
-    const { name, email, message } = validatedData.data;
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY is not configured; contact message dropped:", {
+      name,
+      email,
+    });
+    return {
+      success: false,
+      message:
+        "Formulir kontak sedang tidak tersedia. Silakan hubungi saya langsung melalui email.",
+    };
+  }
 
-    // Send email using Resend
-    // Skip if no API key is present, just return success for mockup purposes if placeholder
-    if (!process.env.RESEND_API_KEY) {
-       console.log("Mocking email send (No API Key):", { name, email, message });
-       // await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network
-       return { success: true, message: "Pesan Anda berhasil dikirim (Mock)!" };
-    }
-
+  try {
+    const resend = new Resend(apiKey);
     await resend.emails.send({
-      from: "Portofolio Contact <onboarding@resend.dev>",
-      to: "riyan.zakaria.zulkarnain@example.com", // Adjust to the actual email
+      from: FROM_EMAIL,
+      to: TO_EMAIL,
+      replyTo: email,
       subject: `New Message from ${name} via Portofolio`,
       text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
     });
