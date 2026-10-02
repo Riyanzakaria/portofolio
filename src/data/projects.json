@@ -3,7 +3,12 @@
     "id": 1,
     "slug": "nusantarajok",
     "thumbnail_url": "/assets/projects/kopergrosir.webp",
-    "tech_stack": ["Laravel", "Blade", "Alpine.js", "Tailwind"],
+    "tech_stack": [
+      "Laravel",
+      "Blade",
+      "Alpine.js",
+      "Tailwind"
+    ],
     "github_url": "https://github.com/Riyanzakaria/nusantarajok",
     "live_url": "",
     "span": "col-span-1 md:col-span-2",
@@ -24,7 +29,11 @@
     "id": 2,
     "slug": "amoresync",
     "thumbnail_url": "/assets/projects/tivity.webp",
-    "tech_stack": ["TypeScript", "Next.js", "Tailwind"],
+    "tech_stack": [
+      "TypeScript",
+      "Next.js",
+      "Tailwind"
+    ],
     "github_url": "https://github.com/Riyanzakaria/amoresync",
     "live_url": "https://amoresync.vercel.app",
     "span": "col-span-1",
@@ -45,7 +54,11 @@
     "id": 3,
     "slug": "lexilink",
     "thumbnail_url": "/assets/projects/attendance.webp",
-    "tech_stack": ["Kotlin", "Jetpack Compose", "Firebase"],
+    "tech_stack": [
+      "Kotlin",
+      "Jetpack Compose",
+      "Firebase"
+    ],
     "github_url": "https://github.com/Riyanzakaria/UTS-Mobile-2",
     "live_url": "",
     "span": "col-span-1",
@@ -66,7 +79,11 @@
     "id": 4,
     "slug": "harmonix",
     "thumbnail_url": "/assets/projects/passkeeper.webp",
-    "tech_stack": ["PHP", "HTML", "MySQL"],
+    "tech_stack": [
+      "PHP",
+      "HTML",
+      "MySQL"
+    ],
     "github_url": "https://github.com/Riyanzakaria/harmonix",
     "live_url": "",
     "span": "col-span-1 md:col-span-2 lg:col-span-1",
